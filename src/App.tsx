@@ -10,7 +10,7 @@ function App() {
   const [pid,setPid] =useState(null);
 
   return (
-    <div className="bg-blue-100">
+    <div className="bg-white">
      <Navbar setShowForm={setShowForm}  />
      {showForm || pid === null &&  <Stat/> }
       <div className="w-screen h-screen flex justify-center items-center">
