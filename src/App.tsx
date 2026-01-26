@@ -1,7 +1,6 @@
 import { useState } from "react";
 import AddItem from "./components/AddItem";
 import Navbar from "./components/Navbar";
-import ProductCard from "./components/ProductCard";
 import Products from "./components/Products";
 import Stat from "./components/Stat";
 

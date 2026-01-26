@@ -55,7 +55,8 @@ const filtterData = localData?.filter(product => product.id ==pid);
       console.log(setData, localStorage.getItem("product"));
     }
     setShowForm(0);
-    setPid();
+    // setPid();
+    location.reload();
   };
 
   return (
@@ -126,4 +127,4 @@ const filtterData = localData?.filter(product => product.id ==pid);
       </div>
     </div>
   );
-}
+}
