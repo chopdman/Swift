@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 
 export default function Products({ setPid }) {
@@ -6,14 +6,22 @@ export default function Products({ setPid }) {
   const allProducts = stored ? JSON.parse(stored) : [];
 
   const [products, setProducts] = useState(allProducts);
+  const [search,setSearch] = useState("");
 
-  const handleSearch = (e) => {
-    const value= e.target.value.toLowerCase();
 
-    const filtered= allProducts.filter((p)=> p.name.toLowerCase().includes(value));
-    setProducts(filtered);
-       console.log(products);
-  };
+  useEffect(()=>{
+    const timer =setTimeout(()=>{
+      const value =search.toLowerCase();
+
+      const filtered = allProducts.filter((p)=> p.name.toLowerCase().includes(value));
+
+      setProducts(filtered);
+    },300);
+
+    return ()=> clearTimeout(timer);
+  },[search,allProducts])
+
+
 
   return (
     <div className="bg-white mt-10 relative w-screen">
@@ -21,8 +29,9 @@ export default function Products({ setPid }) {
         type="text"
         placeholder="search"
         className="border rounded absolute right-7 p-1"
-        onChange={handleSearch}
-      />
+        value={search}
+        onChange={(e)=> setSearch(e.target.value)}
+    />
       <div className="w-screen h-screen bg-white flex items-center justify-center gap-10 flex-wrap p-10 ">
         {products?.length > 0 ? (
           products.map((pr) => {
